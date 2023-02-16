@@ -117,4 +117,35 @@ If 10x Genomics Linked-Reads and PacBio or ONT reads (or basically any Third Gen
        /opt/GCB_Scaffolding/CandidatePair.sh -f draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafA_ScafB_BXCnt.tsv -p draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafHeadTail_BX_pairSum.tsv -o GCB_Scaffolding/
        /opt/GCB_Scaffolding/Scaffolding.sh -f draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -a draft_gcbgf_lcbgf_lcbs_rename.fa -g g-contigs.fa -o GCB_Scaffolding/
 ```
+### III. 10x Genomics & Bionano Hybrid Scaffold Pipeline
 
+Pipeline incorporating 10x Genomics linked reads and Bionano Hybrid Scaffold:
+![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/ccshaney/locla-figures-locla_bionano_pipeline.jpeg)
+
+```
+    # Categorize fastqs by their barcodes
+    python /opt/10x_program/step1_preprocessFastq.py -f 10xG_FASTQS --id PROJECTID -o raw_fastq_dir
+    
+    # GCB Gap-Filling
+    ### We recommend you take scaffolds that are in conflict with and those unused by the Bionano protocol (Hybrid Scaffold only utilizes scaffolds longer than 100kbp) to fill in larger gaps in the Hybrid Scaffold first.
+    /opt/GCB_GapFilling/Fill.sh -a HybridScaffold.fa -g conflict_unused.fa -o GCB_GapFilling/ 
+
+    # LCB Gap-Filling
+    ### Before running this module, scaffolds in conflict and unused by Bionano should be retrieved; therefore, draft_gcbgf.fa should consist of the Hybrid Scaffold after GCB Gap Filling and conflict_unused.fa in GCB Gap Filling
+    python /opt/10x_program/runStep1to3.py -f raw_fastq_dir/ -g draft_gcbgf.fa --id PROJECTID -a bwa_mem -o 10x_preprocess/
+    /opt/LCB_GapFilling/ProduceBXList.sh -f draft_gcbgf_bwa_mem_C70M60.sam -a draft_gcbgf.fa -o LCB_GapFilling/
+    /opt/LCB_GapFilling/Assemble.sh -r 10x_preprocess/nonDupFq/split -o LCB_GapFilling/
+    /opt/LCB_GapFilling/Fill.sh -a draft_gcbgf.fa -o LCB_GapFilling/
+
+    #LCB Scaffolding
+    python /opt/10x_program/runStep1to3.py -f raw_fastq_dir/ -g draft_gcbgf_lcbgf.fa --id PROJECTID -a bwa_mem -o 10x_preprocess/ 
+    /opt/LCB_Scaffolding/CandidatePair.sh -f draft_gcbgf_lcbgf_bwa_mem_C70M60_ScafA_ScafB_BXCnt.tsv -p draft_gcbgf_lcbgf_bwa_mem_C70M60_ScafHeadTail_BX_pairSum.tsv -o LCB_Scaffolding/
+    /opt/LCB_Scaffolding/Assemble.sh -f draft_gcbgf_lcbgf_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -r 10x_preprocess/nonDupFq/split -o LCB_Scaffolding/
+    /opt/LCB_Scaffolding/Scaffolding.sh -f draft_gcbgf_lcbgf_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -a draft_gcbgf_lcbgf.fa -o LCB_Scaffolding/
+
+    #GCB Scaffolding
+    python /opt/10x_program/runStep1to3.py -f raw_fastq_dir/ -g draft_gcbgf_lcbgf_lcbs_rename.fa --id PROJECTID -a bwa_mem -o 10x_preprocess/ 
+    /opt/XCB_Scaffolding/CandidatePair.sh -f draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafA_ScafB_BXCnt.tsv -p draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafHeadTail_BX_pairSum.tsv -o GCB_Scaffolding/
+    ### G-contigs.fa could be the draft assembly or scaffolds that are in conflict with and those unused by the Bionano protocol
+    /opt/GCB_Scaffolding/Scaffolding.sh -f draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -a draft_gcbgf_lcbgf_lcbs_rename.fa -g g-contigs.fa -o GCB_Scaffolding/
+```
