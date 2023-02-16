@@ -5,11 +5,11 @@
 ## Introduction:
 
 LOCLA is a novel genome assembly optimization tool, LOCLA, that iteratively enhances the quality of an assembly by locating sequencing reads on partially assembled scaffolds and thus enable gap filling and further scaffolding. LOCLA utilizes reads of diverse sequencing techniques, e.g.,10x Genomics (10xG) Linked-Reads, [**PacBio HiFi Reads](https://www.pacb.com/technology/hifi-sequencing) and [**Oxford Nanopore Technologies**](https://nanoporetech.com/). 
-**In our own experiments, we assembled 10x Genomics (10xG) Linked-Reads via [**Supernova assembler**](https://support.10xgenomics.com/de-novo-assembly/software/overview/latest/welcome) and TGS reads via [**Canu**](https://github.com/marbl/canu). Additional tools incorporated in our pipeline include *Hybrid Scaffold* developed by [**Bionano Genomics**]( https://bionanogenomics.com/ ) and [*RagTag*](https://github.com/malonge/RagTag) **
+In our own experiments, we assembled 10x Genomics (10xG) Linked-Reads via [**Supernova assembler**](https://support.10xgenomics.com/de-novo-assembly/software/overview/latest/welcome) and TGS reads via [**Canu**](https://github.com/marbl/canu). Additional tools incorporated in our pipeline include *Hybrid Scaffold* developed by [**Bionano Genomics**]( https://bionanogenomics.com/ ) and [*RagTag*](https://github.com/malonge/RagTag).
 
 ## Usage:
 
-The following are the minimum required commands to run each main module separately:
+LOCLA contains one preprocess module and four main modules. The following are the minimum required commands to run each main module separately:
 
 #### 1. LCB Gap Filling:
 ```
@@ -19,7 +19,7 @@ The following are the minimum required commands to run each main module separate
   /opt/LCB_GapFilling/Fill.sh -a draft.fa -o LCB_GapFilling/
 ```
 #### 2. GCB Gap Filling:
-It can be a stand alone module without any 10x Genomics resource.
+It can be a stand alone module without 10xG Linked-Reads.
 ```
   /opt/GCB_GapFilling/Fill.sh -a draft.fa -g g-contigs.fa -o GCB_GapFilling/
 
@@ -43,6 +43,7 @@ It can be a stand alone module without any 10x Genomics resource.
   /opt/GCB_Scaffolding/Scaffolding.sh -f draft_gcbgf_lbgf_labs_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -a draft_rename.fa -g g-contigs.fa -o GCB_Scaffolding/
 ```
 
-The four main modules can be used in any order and iterated several times.The source codes are accessible to all.
+The modules can be used in any order and iterated several times.The source codes are accessible to all.
 
 For advanced usage see [**TECHNOTES.md**](TECHNOTES.md).
+
