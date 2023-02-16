@@ -1,5 +1,6 @@
 # locla
-LOCLA: Local Optimization for Chromosome-Level Assembly
+# LOCLA: Local Optimization for Chromosome-Level Assembly
+
 #### The docker image of LOCLA is freely accessible on [**our dockerhub website**]([https://hub.docker.com/repository/docker/lsbnb/locla/general])
 
 ## Introduction:
