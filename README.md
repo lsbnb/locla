@@ -181,10 +181,10 @@ With all resources mentioned above (10x Genomics linked reads, PacBio or ONT rea
      /opt/GCB_Scaffolding/Scaffolding.sh -f draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -a draft_gcbgf_lcbgf_lcbs_rename.fa -g g-contigs.fa -o GCB_Scaffolding/
 ```
 ### V. PacBio/ONT Pipeline:
-You can also run GABOLA without 10x Genomic linked reads. GCB Gap Filling is a module fit for optimizing genome assemblies with PacBio or Nanopore reads.
+You can also run GABOLA without 10x Genomic linked reads. GCB Gap Filling is a module designed for optimizing genome assemblies with PacBio or Nanopore reads.
 The pipeline suggested below is simplified, different assembling or polishing tools can be performed in between iterations of GCB Gap Filling. 
 
-![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/ccshaney/gabola-gabola_tgs_pipeline_0729.jpg)
+![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/ccshaney/locla-figures-locla_tgsonly_pipeline.jpg)
 
 ```
        #GCB Gap-Filling 
