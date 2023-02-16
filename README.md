@@ -52,7 +52,7 @@ In terms of Gap Filling, we recommend applying GCB before LCB to fill in bigger 
 ### I. 10x Genomics Pipeline
 If you only have 10x Genomics linked reads at hand, we propose this pipeline
 
-![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/ccshaney/gabola-gabola_10x_pipeline_0730.jpg)
+![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/ccshaney/locla_10x_pipeline.jpeg)
 
 ```
        # GCB Gap-Filling
