@@ -1,8 +1,8 @@
-## GABOLA Technical Notes
+## LOCLA Technical Notes
 ### § Preprocess Module:
 
 #### *Step I. Produce non-duplicate split fastqs sorted by barcodes from raw linked reads*
-If you choose to run the three steps of Preprocess module separately: **This step should be performed before running any GABOLA modules**, and it only needs to be run **once** in your entire pipeline.
+If you choose to run the three steps of Preprocess module separately: **This step should be performed before running any LOCLA modules**, and it only needs to be run **once** in your entire pipeline.
 
 **Input:**
 
@@ -59,7 +59,7 @@ optional arguments:
 
 ```
 #### *Step II. Filter alignment by CIGAR match quality and MAPQ score*
-If you choose to run the three steps of Preprocess module separately: this step should be performed before running LAB-Gap Filling, LCB-Scaffolding or GCB-Scaffolding.
+If you choose to run the three steps of Preprocess module separately: this step should be performed before running LCB-Gap Filling, LCB-Scaffolding or GCB-Scaffolding.
 
 **Input:**
 
