@@ -18,11 +18,13 @@ LOCLA contains one preprocess module and four main modules. The following are th
   /opt/LCB_GapFilling/Assemble.sh -r /10x_preprocess/nonDupFq/split -o LCB_GapFilling/
   /opt/LCB_GapFilling/Fill.sh -a draft.fa -o LCB_GapFilling/
 ```
+
 #### 2. GCB Gap Filling:
 It can be a stand alone module without 10xG Linked-Reads.
 ```
   /opt/GCB_GapFilling/Fill.sh -a draft.fa -g g-contigs.fa -o GCB_GapFilling/
 ```
+
 #### 3. LCB Scaffolding:
 ```
   #rename draft.fa by length first to fit our format
@@ -55,17 +57,20 @@ If you only have 10x Genomics linked reads at hand, we propose this pipeline
 ![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/ccshaney/locla_10x_pipeline.jpeg)
 
 ```
+       # Categorize fastqs by their barcodes
+       python /opt/10x_program/step1_preprocessFastq.py -f 10xG_FASTQS --id PROJECTID -o raw_fastq_dir 
+       
        # GCB Gap-Filling
        ### Under the premise that only 10x reads are available, we would use the initial draft assembly as g-contigs
        /opt/GCB_GapFilling/Fill.sh -a draft.fa -x draft.fa -o GCB_GapFilling/
  
-       #LCB Gap-Filling
+       # LCB Gap-Filling
        python /opt/10x_program/runStep1to3.py -f raw_fastq_dir/ -g draft_gcbgf.fa --id PROJECTID -a bwa_mem -o 10x_preprocess/
        /opt/LCB_GapFilling/ProduceBXList.sh -f draft_gcbgf_bwa_mem_C70M60.sam -a draft_gcbgf.fa -o LCB_GapFilling/
        /opt/LCB_GapFilling/Assemble.sh -r 10x_preprocess/nonDupFq/split/ -o LCB_GapFilling/
        /opt/LCB_GapFilling/Fill.sh -a draft_gcbgf.fa -o LCB_GapFilling/
        
-       #LCB Scaffolding
+       # LCB Scaffolding
        python /opt/10x_program/runStep1to3.py -f raw_fastq_dir/ -g draft_gcbgf_lcbgf.fa --id PROJECTID -a bwa_mem -o 10x_preprocess/
        /opt/LCB_Scaffolding/CandidatePair.sh -f draft_gcbgf_lcbgf_bwa_mem_C70M60_ScafA_ScafB_BXCnt.tsv -p draft_gcbgf_lcbgf_bwa_mem_C70M60_ScafHeadTail_BX_pairSum.tsv -o LCB_Scaffolding/
        /opt/LCB_Scaffolding/Assemble.sh -f draft_gcbgf_lcbgf_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -r 10x_preprocess/nonDupFq/split -o LCB_Scaffolding/
