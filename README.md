@@ -149,3 +149,4 @@ Pipeline incorporating 10x Genomics linked reads and Bionano Hybrid Scaffold:
     ### G-contigs.fa could be the draft assembly or scaffolds that are in conflict with and those unused by the Bionano protocol
     /opt/GCB_Scaffolding/Scaffolding.sh -f draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -a draft_gcbgf_lcbgf_lcbs_rename.fa -g g-contigs.fa -o GCB_Scaffolding/
 ```
+
