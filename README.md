@@ -4,8 +4,8 @@
 
 ## Introduction:
 
-LOCLA is a novel genome assembly optimization tool, LOCLA, that iteratively enhances the quality of an assembly by locating sequencing reads on partially assembled scaffolds and thus enable gap filling and further scaffolding. LOCLA utilizes reads of diverse sequencing techniques, e.g.,10x Genomics (10xG) Linked-Reads, [**PacBio HiFi Reads](https://www.pacb.com/technology/hifi-sequencing) and [**Oxford Nanopore Technologies**](https://nanoporetech.com/). 
-In our own experiments, we assembled 10x Genomics (10xG) Linked-Reads via [**Supernova assembler**](https://support.10xgenomics.com/de-novo-assembly/software/overview/latest/welcome) and TGS reads via [**Canu**](https://github.com/marbl/canu). Additional tools incorporated in our pipeline include *Hybrid Scaffold* developed by [**Bionano Genomics**]( https://bionanogenomics.com/ ) and [*RagTag*](https://github.com/malonge/RagTag).
+LOCLA is a novel genome assembly optimization tool, LOCLA, that iteratively enhances the quality of an assembly by locating sequencing reads on partially assembled scaffolds and thus enable gap filling and further scaffolding. LOCLA utilizes reads of diverse sequencing techniques, e.g., 10x Genomics (10xG) Linked-Reads, [**PacBio HiFi Reads**](https://www.pacb.com/technology/hifi-sequencing) and [**Oxford Nanopore Technologies**](https://nanoporetech.com/). 
+In our own experiments, we assembled 10x Genomics (10xG) Linked-Reads via [**Supernova assembler**](https://support.10xgenomics.com/de-novo-assembly/software/overview/latest/welcome) and TGS reads via [**Canu**](https://github.com/marbl/canu). Additional tools incorporated in our pipeline include *Hybrid Scaffold* developed by [**Bionano Genomics**]( https://bionanogenomics.com/ ) and [**RagTag**](https://github.com/malonge/RagTag).
 
 ## Usage:
 
