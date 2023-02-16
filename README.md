@@ -150,3 +150,46 @@ Pipeline incorporating 10x Genomics linked reads and Bionano Hybrid Scaffold:
     /opt/GCB_Scaffolding/Scaffolding.sh -f draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -a draft_gcbgf_lcbgf_lcbs_rename.fa -g g-contigs.fa -o GCB_Scaffolding/
 ```
 
+### IV. 10x Genomics & Bionano Hybrid Scaffold & PacBio/ONT Pipeline
+With all resources mentioned above (10x Genomics linked reads, PacBio or ONT reads and Bionano Hybrid Scaffold) available, we suggest this pipeline:
+
+![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/ccshaney/locla-figures-locla_tgs_bionano_pipeline_0.jpg)
+
+```
+     #GCB Gap-Filling
+     ### G-contigs.fa could contain (1) Scaffolds in conflict with Bionano cmap (2) Scaffolds unused by Bionano (3) TGS long reads or draft assembly
+     We recommend you fill in larger gaps on the Hybrid Scaffold with g-contigs.fa first.
+     /opt/GCB_GapFilling/Fill.sh -a HybridScaffold.fa -g g-contigs.fa -o GCB_GapFilling/ 
+
+     #LCB Gap-Filling
+     ### Before running this module, scaffolds in conflict and unused by Bionano should be retrieved; therefore, draft_gcbgf.fa should consist of the Hybrid Scaffold after GCB Gap Filling and (1) & (2) aforementioned
+     python /opt/10x_program/runStep1to3.py -f raw_fastq_dir/ -g draft_gcbgf.fa --id PROJECTID -a bwa_mem -o 10x_preprocess/
+     /opt/LCB_GapFilling/ProduceBXList.sh -f draft_gcbgf_bwa_mem_C70M60.sam -a draft_gcbgf.fa -o LCB_GapFilling/
+     /opt/LCB_GapFilling/Assemble.sh -r 10x_preprocess/nonDupFq/split -o LCB_GapFilling/
+     /opt/LCB_GapFilling/Fill.sh -a draft_gcbgf.fa -o LCB_GapFilling/
+
+     #LCB Scaffolding
+     python /opt/10x_program/runStep1to3.py -f raw_fastq_dir/ -g draft_gcbgf_lcbgf.fa --id PROJECTID -a bwa_mem -o 10x_preprocess/
+     /opt/LCB_Scaffolding/CandidatePair.sh -f draft_gcbgf_lcbgf_bwa_mem_C70M60_ScafA_ScafB_BXCnt.tsv -p  draft_gcbgf_lcbgf_bwa_mem_C70M60_ScafHeadTail_BX_pairSum.tsv -o LCB_Scaffolding/
+     /opt/LCB_Scaffolding/Assemble.sh -f draft_gcbgf_lcbgf_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -r 10x_preprocess/nonDupFq/split -o LCB_Scaffolding/
+     /opt/LCB_Scaffolding/Scaffolding.sh -f draft_gcbgf_lcbgf_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -a draft_gcbgf_lcbgf.fa -o LCB_Scaffolding/
+
+     #GCB Scaffolding
+     python /opt/10x_program/runStep1to3.py -f raw_fastq_dir/ -g draft_gcbgf_lcbgf_lcbs_rename.fa --id PROJECTID -a bwa_mem -o 10x_preprocess/
+     /opt/GCB_Scaffolding/CandidatePair.sh -f draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafA_ScafB_BXCnt.tsv -p draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafHeadTail_BX_pairSum.tsv -o GCB_Scaffolding/
+     ### Since unused and conflict scaffolds were already added back to the draft assembly. G-contigs.fa could be TGS long reads or scaffolds of draft assembly that weren’t used in GCB Gap Filling
+     /opt/GCB_Scaffolding/Scaffolding.sh -f draft_gcbgf_lcbgf_lcbs_bwa_mem_C70M60_ScafA_ScafB_BXCnt_rmMultiEnd.tsv -a draft_gcbgf_lcbgf_lcbs_rename.fa -g g-contigs.fa -o GCB_Scaffolding/
+```
+### V. PacBio/ONT Pipeline:
+You can also run GABOLA without 10x Genomic linked reads. GCB Gap Filling is a module fit for optimizing genome assemblies with PacBio or Nanopore reads.
+The pipeline suggested below is simplified, different assembling or polishing tools can be performed in between iterations of GCB Gap Filling. 
+
+![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/ccshaney/gabola-gabola_tgs_pipeline_0729.jpg)
+
+```
+       #GCB Gap-Filling 
+       ### Unused PacBio/ONT reads as g-contigs.fa
+       /opt/GCB_GapFilling/Fill.sh -a draft.fa -g g-contigs.fa -o GCB_GapFilling/ 
+       
+       #Filter out used PacBio/ONT reads and perform GCB Gap-Filling again with those unused
+```
