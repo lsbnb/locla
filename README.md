@@ -194,6 +194,8 @@ The pipeline suggested below is simplified, different assembling or polishing to
        #Filter out used PacBio/ONT reads and perform GCB Gap-Filling again with those unused
 ```
 ## Citation:
-A Novel Genome Optimization Tool for Chromosome-Level Assembly across Diverse Sequencing Techniques
-Wei-Hsuan Chuang, Hsueh-Chien Cheng, Yu-Jung Chang, Pao-Yin Fu, Yi-Chen Huang, Ping-Heng Hsieh, Shu-Hwa Chen, Pui-Yan Kwok, Chung-Yen Lin, Jan-Ming Ho
-bioRxiv 2023.07.20.549842; doi: https://doi.org/10.1101/2023.07.20.549842 
+**A Novel Genome Optimization Tool for Chromosome-Level Assembly across Diverse Sequencing Techniques**
+
+Wei-Hsuan Chuang, Hsueh-Chien Cheng, Yu-Jung Chang, Pao-Yin Fu, Yi-Chen Huang, Ping-Heng Hsieh, Shu-Hwa Chen, Pui-Yan Kwok, Chung-Yen Lin, Jan-Ming Ho,
+***bioRxiv*** 2023.07.20.549842; doi: https://doi.org/10.1101/2023.07.20.549842 
+
