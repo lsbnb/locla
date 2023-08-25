@@ -193,3 +193,4 @@ The pipeline suggested below is simplified, different assembling or polishing to
        
        #Filter out used PacBio/ONT reads and perform GCB Gap-Filling again with those unused
 ```
+## Citation:
