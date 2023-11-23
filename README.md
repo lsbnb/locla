@@ -1,7 +1,7 @@
 # LOCLA: Local Optimization for Chromosome-Level Assembly
 
 #### The docker image of LOCLA is freely accessible on [**our dockerhub website**](https://hub.docker.com/r/lsbnb/locla)
-![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/cylin/logo_locla.png)
+![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/cylin/logo_locla_s.jpg)
 
 ## Introduction:
 
