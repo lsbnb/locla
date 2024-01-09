@@ -88,7 +88,7 @@ If you only have 10x Genomics linked reads at hand, we propose this pipeline
 
 If 10x Genomics Linked-Reads and PacBio or ONT reads (or basically any Third Generation Sequencing long reads) are obtainable, then we suggest this pipeline:
 
-![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/ccshaney/locla_tgs_10x_pipeline_0.jpeg)
+![LOCLA-figures-LOCLA_TGS_10x_pipeline](https://github.com/lsbnb/locla/assets/51230850/8faed1d7-6f63-4f6e-8fd6-e01b9f46d4b5)
 
 ```
        # Categorize fastqs by their barcodes
