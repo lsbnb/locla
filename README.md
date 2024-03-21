@@ -3,6 +3,14 @@
 #### The docker image of LOCLA is freely accessible on [**our dockerhub website**](https://hub.docker.com/r/lsbnb/locla)
 ![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/cylin/logo_locla_s.jpg)
 
+#### Contact information: 
+Chung-Yen Lin (cylin@iis.sinica.edu.tw); [**LAB website**](http://eln.iis.sinica.edu.tw)
+Wei-Hsuan Chuang (ccshaney@iis.sinica.edu.tw)
+
+#### Team members:
+
+Jang-Ming Ho, Chung-Yen Lin, Shu-Hwa Chen, Yu-Jung Chang, Ping-Heng Hsieh, Po-Ying Fu, Yi-Chen Huang, Wei-Hsuan Chuang, Hsueh-Chien Cheng
+
 ## Introduction:
 
 LOCLA is a novel genome assembly optimization tool, LOCLA, that iteratively enhances the quality of an assembly by locating sequencing reads on partially assembled scaffolds and thus enable gap filling and further scaffolding. LOCLA utilizes reads of diverse sequencing techniques, e.g., 10x Genomics (10xG) Linked-Reads, [**PacBio HiFi Reads**](https://www.pacb.com/technology/hifi-sequencing) and [**Oxford Nanopore Technologies**](https://nanoporetech.com/). 
