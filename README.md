@@ -1,4 +1,4 @@
-# LOCLA: Local Optimization for Chromosome-Level Assembly
+# LOCLA: A Novel Local Optimization Tool for Chromosome-Level Assembly of Multiple Sequencing Technologies
 
 #### The docker image of LOCLA is freely accessible on [**our dockerhub website**](https://hub.docker.com/r/lsbnb/locla)
 ![alt text](https://eln.iis.sinica.edu.tw/lims/files/users/cylin/logo_locla_s.jpg)
@@ -14,7 +14,7 @@ Jang-Ming Ho, Chung-Yen Lin, Shu-Hwa Chen, Yu-Jung Chang, Ping-Heng Hsieh, Po-Yi
 
 ## Introduction:
 
-LOCLA is a novel genome assembly optimization tool, LOCLA, that iteratively enhances the quality of an assembly by locating sequencing reads on partially assembled scaffolds and thus enable gap filling and further scaffolding. LOCLA utilizes reads of diverse sequencing techniques, e.g., 10x Genomics (10xG) Linked-Reads, [**PacBio HiFi Reads**](https://www.pacb.com/technology/hifi-sequencing) and [**Oxford Nanopore Technologies**](https://nanoporetech.com/). 
+LOCLA stands for 'Local Optimization for Chromosome-Level Assembly'. It is a novel genome assembly optimization tool, LOCLA, that iteratively enhances the quality of an assembly by locating sequencing reads on partially assembled scaffolds and thus enable gap filling and further scaffolding. LOCLA utilizes reads of diverse sequencing techniques, e.g., 10x Genomics (10xG) Linked-Reads, [**PacBio HiFi Reads**](https://www.pacb.com/technology/hifi-sequencing) and [**Oxford Nanopore Technologies**](https://nanoporetech.com/). 
 In our own experiments, we assembled 10x Genomics (10xG) Linked-Reads via [**Supernova assembler**](https://support.10xgenomics.com/de-novo-assembly/software/overview/latest/welcome) and TGS reads via [**Canu**](https://github.com/marbl/canu). Additional tools incorporated in our pipeline include *Hybrid Scaffold* developed by [**Bionano Genomics**]( https://bionanogenomics.com/ ) and [**RagTag**](https://github.com/malonge/RagTag).
 
 ## Usage:
